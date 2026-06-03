@@ -19,7 +19,7 @@ jobs:
           account: conjur
           authn_id: github-jwt
           secrets: |
-            data/vault/Shimran-Github-Conjur/Database-MySQL-mysqladdress-test/password|CONJUR_PASS;data/vault/Shimran-Github-Conjur/Database-MySQL-mysqladdress-test/username|CONJUR_USERNAME;
+            data/vault/Playground/Operating System-DemoUnixviaSSHUsage-1.1.1.1-UsageExampleUser/password|CONJUR_PASS;data/vault/Playground/Operating System-DemoUnixviaSSHUsage-1.1.1.1-UsageExampleUser/username|CONJUR_USERNAME;
       
       - run: |
           echo $CONJUR_PASS | sed 's/./& /g'
