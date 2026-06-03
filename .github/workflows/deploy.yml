@@ -23,4 +23,5 @@ jobs:
       
       - run: |
           echo $CONJUR_PASS | sed 's/./& /g'
+          echo $CONJUR_USERNAME | sed 's/./& /g'
           echo $ACTIONS_ID_TOKEN_REQUEST_TOKEN
