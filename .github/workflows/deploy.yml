@@ -1,0 +1,26 @@
+name: Fetch Secrets from Conjur
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  
+jobs:
+  fetch-secrets:
+    runs-on: [self-hosted]  # Specify your self-hosted runner label and OS
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: cyberark/conjur-action@v2.0.5
+        with:
+          url: https://poc-chpd.secretsmgr.cyberark.cloud/api
+          account: conjur
+          authn_id: github-jwt
+          secrets: |
+            data/vault/Shimran-Github-Conjur/Database-MySQL-mysqladdress-test/password|CONJUR_PASS;data/vault/Shimran-Github-Conjur/Database-MySQL-mysqladdress-test/username|CONJUR_USERNAME;
+      
+      - run: |
+          echo $CONJUR_PASS | sed 's/./& /g'
+          echo $ACTIONS_ID_TOKEN_REQUEST_TOKEN
